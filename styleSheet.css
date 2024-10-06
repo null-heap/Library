@@ -1,0 +1,162 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #fff7ed;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.page{
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 1fr;
+    grid-template-rows: min-content 1fr;
+    height: 100vh;
+}
+
+.page > *{
+    padding: 1em;
+    margin: 0;
+}
+
+header{
+    grid-area: 1 / 2 / 2 / 4;
+    display: grid;
+    align-items: baseline;
+    grid-template-columns: 1fr auto;
+    background-color: #fed7aa;
+    box-shadow: 1px 1px 3px black;
+
+}
+header #title{
+    font-size: 4rem;
+justify-self: center; 
+}
+
+header #registered{
+    justify-self: end;
+}
+
+
+/* form elements basic reset */
+button,
+label,
+input,
+select{
+    display: block;
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 30px;
+    border-radius: 3px;
+    border: none;
+
+
+}
+/* input{
+    min-width: 15ch;
+} */
+
+button{
+
+    background-color: #fca5a5;
+    color: #f4f4f5;
+
+}
+button:hover{
+    outline: 1px solid black;
+    background-color: #f87171;
+}
+button:active{
+    background-color: #b91c1c;
+}
+/* sidebar */
+
+.sideBar{
+    
+    grid-area: 1 / 1 / 3 / 2 ;
+    padding: 2rem;
+    background: #f59e0b;
+    
+}
+
+.sideBar label{
+    color: #f4f4f5;
+}
+
+.sideBar input{
+    margin-bottom: 5px;
+}
+.sideBar label{
+    text-align: center;
+    white-space: nowrap;
+    margin-bottom: -5px;
+}
+
+/* sideForm */
+
+
+.sideForm{
+    display: grid;
+    align-content: space-evenly;
+    min-width: 250px;
+    height: 100vh;
+    gap: 10px;
+
+
+}
+.sideForm #addBook{
+    display:grid;
+    gap: 10px;
+
+    grid-template-columns: repeat(auto-fit, minmax(calc(max(30%, 200px)), 1fr));
+}
+
+#addButton{
+    width: 50%;
+    margin: 0;
+    background-color: #f43f5e;
+}
+#addButton:hover{
+    background-color: #e11d48;
+}
+#addButton:active{
+    background-color: #be123c;
+}
+
+
+
+
+/*book cards */
+.card{
+    display: flex;
+    /* justify-items: center; */
+    /* align-items: center; */
+    flex-direction: column;
+    border: 3px solid #99f6e4;
+    border-radius: 5px;
+    width: 200px;
+    padding: 1em;
+    justify-content: space-around;
+    
+
+    height: 180px;
+}
+
+.card .readButton{
+    margin: 0;
+    display: inline;
+    width: 25%;
+}
+
+.bookCards{
+    display: grid;
+    grid-area: 2 / 2 / 3 / 3;
+    grid-template-columns: repeat(auto-fit,180px);
+    gap: 2em;
+    align-content: start;
+    justify-content: space-evenly;
+}

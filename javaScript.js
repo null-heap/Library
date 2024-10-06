@@ -1,5 +1,7 @@
 const myLibrary = [];
 
+
+// i have two options to help me keep track of the books id, use count or rely on myLibrary.length.
 function Book(title, author, pages, read, id){
     // Book.count ++;
     this.title = title;

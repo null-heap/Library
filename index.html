@@ -1,13 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library</title>
     <script src="javaScript.js" defer></script>
-    <link rel="stylesheet" href="styleSheet.css">
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="styleSheet.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div id="title">Library</div>
+        <div id="registered">books registered: 0</div>
+      </header>
+      <!-- <div class="sideBar">
+            <div id="addBook">
+                    <button id="addButton">Add Book</button>
+                
+            </div>
+
+            <div id="delBook">
+                    <label for="del">Remove Book</label>
+                    <input type="number" name="del" id="del" placeholder="Enter ID">
+                    <button>REMOVE</button>
+            </div>
+        </div> -->
+
+      <div class="sideBar">
+        <div class="sideForm">
+          <div id="addBook">
+            <div>
+              <label for="author">Author</label>
+              <input type="text" name="author" id="author" />
+            </div>
+            <div>
+              <label for="title">Title</label>
+              <input type="text" name="title" id="title" />
+            </div>
+            <div>
+              <label for="pages">Pages</label>
+              <input type="number" name="pages" id="pages" min="0"/>
+            </div>
+            <div>
+              <label for="read">Read</label>
+              <button class="readButton" id="read">No</button>
+            </div>
+
+            <div>
+                <button id="addButton">ADD</button>
+            </div>
+
+          </div>
+
+
+          <div id="delBook">
+            <label for="del">Remove Book</label>
+            <input type="number" name="del" id="del" placeholder="Enter ID" min="0"/>
+            <button>REMOVE</button>
+          </div>
+        </div>
+      </div>
+
+        <div class="bookCards">
+          <div class="card">
+            <div class="title">
+              <span class="cardStrong">Title: </span>
+              <span class="value">The Hobbit</span>
+            </div>
+            <div class="author">
+              <span class="cardStrong">By author: </span>
+              <span class="value">J.K.K</span>
+            </div>
+            <div class="pages">
+              <span class="cardStrong">Pages: </span>
+              <span class="value">329</span>
+            </div>
+
+            <div class="read">
+              <span class="cardStrong">Read: </span>
+              <button class="readButton">No</button>
+            </div>
+
+            <div class="id">
+                <span class="cardStrong">Book Id: </span>
+                <span class="value">10</span>
+            </div>
+          </div>
+
+
+
+          <div class="card">
+            <div class="title">
+              <span class="cardStrong">Title: </span>
+              <span class="value">The Hobbit</span>
+            </div>
+            <div class="author">
+              <span class="cardStrong">By author: </span>
+              <span class="value">J.K.K</span>
+            </div>
+            <div class="pages">
+              <span class="cardStrong">Pages: </span>
+              <span class="value">329</span>
+            </div>
+            <div class="read">
+              <button class="readButton">No</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="title">
+              <span class="cardStrong">Title: </span>
+              <span class="value">The Hobbit</span>
+            </div>
+            <div class="author">
+              <span class="cardStrong">By author: </span>
+              <span class="value">J.K.K</span>
+            </div>
+            <div class="pages">
+              <span class="cardStrong">Pages: </span>
+              <span class="value">329</span>
+            </div>
+            <div class="read">
+              <button class="readButton">No</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="title">
+              <span class="cardStrong">Title: </span>
+              <span class="value">The Hobbit</span>
+            </div>
+            <div class="author">
+              <span class="cardStrong">By author: </span>
+              <span class="value">J.K.K</span>
+            </div>
+            <div class="pages">
+              <span class="cardStrong">Pages: </span>
+              <span class="value">329</span>
+            </div>
+            <div class="read">
+              <button class="readButton">No</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="title">
+              <span class="cardStrong">Title: </span>
+              <span class="value">The Hobbit</span>
+            </div>
+            <div class="author">
+              <span class="cardStrong">By author: </span>
+              <span class="value">J.K.K</span>
+            </div>
+            <div class="pages">
+              <span class="cardStrong">Pages: </span>
+              <span class="value">329</span>
+            </div>
+            <div class="read">
+              <button class="readButton">No</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="title">
+              <span class="cardStrong">Title: </span>
+              <span class="value">The Hobbit</span>
+            </div>
+            <div class="author">
+              <span class="cardStrong">By author: </span>
+              <span class="value">J.K.K</span>
+            </div>
+            <div class="pages">
+              <span class="cardStrong">Pages: </span>
+              <span class="value">329</span>
+            </div>
+            <div class="read">
+              <button class="readButton">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
