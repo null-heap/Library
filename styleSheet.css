@@ -131,32 +131,36 @@ button:active{
 
 
 /*book cards */
-.card{
-    display: flex;
-    /* justify-items: center; */
-    /* align-items: center; */
-    flex-direction: column;
-    border: 3px solid #99f6e4;
-    border-radius: 5px;
-    width: 200px;
-    padding: 1em;
-    justify-content: space-around;
-    
 
-    height: 180px;
-}
 
-.card .readButton{
-    margin: 0;
-    display: inline;
-    width: 25%;
-}
 
-.bookCards{
+#bookCards{
     display: grid;
     grid-area: 2 / 2 / 3 / 3;
     grid-template-columns: repeat(auto-fit,180px);
     gap: 2em;
     align-content: start;
     justify-content: space-evenly;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    border: 3px solid #99f6e4;
+    border-radius: 5px;
+    width: 200px;
+    padding: 1em;
+    justify-content: space-around;
+    height: 180px;
+}
+
+/* card button styling */
+.card .readButton{
+    display: inline;
+    width: 25%;
+}
+
+.cardStrong{
+    font-size: 1.2em;
+    font-weight: 530;
 }
