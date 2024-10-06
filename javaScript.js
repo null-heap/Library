@@ -2,6 +2,7 @@ const myLibrary = [];
 const myLibraryElements = [];
 
 const bookCards = document.querySelector("#bookCards");
+const page = document.querySelector("#page");
 
 
 // i have two options to help me keep track of the books id, use count or rely on myLibrary.length.
@@ -85,4 +86,49 @@ function removeFromLibrary(id){
     return removed;
 }
 
-// the read button funcitonality
+
+// the buttons funcitonality
+page.addEventListener("click", (e) =>{
+    
+    let target = e.target;
+    console.log(target)
+
+    //for add Button
+    if(target.id == "addButton"){
+        console.log("add click");
+        let title = document.querySelector("#title");
+        let author = document.querySelector("#author");
+        let pages = document.querySelector("#pages");
+        let read = document.querySelector("#addReadButton");
+        console.log(title);
+        addBookToLibrary(title.value, author.value, pages.value, read.textContent);
+        title.value = "";
+        author.value = "";
+        pages.value = "";
+        read.textContent = "No"
+
+    //readButton
+    }else if(target.className == "readButton"){
+        if(target.textContent == "No"){
+            target.textContent = "Yes";
+        }else{
+            target.textContent = "No";
+        }
+
+        if(target.id != "addReadButton"){
+            let parent = target.parentNode.parentNode;
+            let idWord = parent.querySelector(".id").querySelector(".value");
+            console.log(idWord);
+            
+            if(target.textContent == "No"){
+                myLibrary[idWord.textContent].read = "No";
+            }else{
+                myLibrary[idWord.textContent].read = "Yes";
+            }
+            console.log(myLibrary[idWord.textContent]);
+        }
+
+
+        
+}
+});

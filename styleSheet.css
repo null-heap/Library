@@ -8,14 +8,14 @@ body{
     box-sizing: border-box;
 }
 
-.page{
+#page{
     display: grid;
     grid-template-columns: 1.5fr 2fr 1fr;
     grid-template-rows: min-content 1fr;
     height: 100vh;
 }
 
-.page > *{
+#page > *{
     padding: 1em;
     margin: 0;
 }
@@ -29,7 +29,7 @@ header{
     box-shadow: 1px 1px 3px black;
 
 }
-header #title{
+header #headTitle{
     font-size: 4rem;
 justify-self: center; 
 }
@@ -101,9 +101,10 @@ button:active{
 
 .sideForm{
     display: grid;
+    grid-template-rows: min-content min-content;
     align-content: space-evenly;
     min-width: 250px;
-    height: 100vh;
+    height: 90vh;
     gap: 10px;
 
 
