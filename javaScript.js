@@ -97,6 +97,11 @@ function removeFromLibrary(id){
 page.addEventListener("click", (e) =>{  
     let target = e.target;
 
+    //to be able to still use form for accessability features
+    if(target.tagName == "BUTTON"){
+        e.preventDefault();
+    }
+
     //for add Button
     if(target.id == "addButton"){
         let title = document.querySelector("#title");
