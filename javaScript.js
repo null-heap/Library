@@ -1,5 +1,4 @@
 const myLibrary = [];
-const myLibraryElements = [];
 
 const bookCards = document.querySelector("#bookCards");
 const page = document.querySelector("#page");
@@ -13,6 +12,7 @@ function Book(title, author, pages, read, id){
     this.pages = pages;
     this.read = read;
     this.id = id;
+    this.divCard;
 }
 // Book.count = 0;
 
@@ -49,7 +49,10 @@ Book.prototype.display = function(){
         //id element
         divCard.appendChild(addToCard("id", "Book Id: ", this.id))
     
-        myLibraryElements.push(divCard);
+        //storing the divCard of the object inside the object for future use and easy manipulation
+        this.divCard = divCard;
+
+        //adding the div to the library
         bookCards.appendChild(divCard);
 
 };
@@ -79,8 +82,11 @@ function addBookToLibrary(title, author, pages, read){
 
 function removeFromLibrary(id){
     let removed = myLibrary.splice(id, 1);
+    
     for(let i = 0; i < myLibrary.length; i++){
         myLibrary[i].id = i;
+        //updates the dom element id;
+        myLibrary[i].divCard.querySelector(".id").querySelector(".value").textContent = i;
     }
     // Book.count --;
     return removed;
@@ -88,19 +94,15 @@ function removeFromLibrary(id){
 
 
 // the buttons funcitonality
-page.addEventListener("click", (e) =>{
-    
+page.addEventListener("click", (e) =>{  
     let target = e.target;
-    console.log(target)
 
     //for add Button
     if(target.id == "addButton"){
-        console.log("add click");
         let title = document.querySelector("#title");
         let author = document.querySelector("#author");
         let pages = document.querySelector("#pages");
         let read = document.querySelector("#addReadButton");
-        console.log(title);
         addBookToLibrary(title.value, author.value, pages.value, read.textContent);
         title.value = "";
         author.value = "";
@@ -118,17 +120,20 @@ page.addEventListener("click", (e) =>{
         if(target.id != "addReadButton"){
             let parent = target.parentNode.parentNode;
             let idWord = parent.querySelector(".id").querySelector(".value");
-            console.log(idWord);
             
             if(target.textContent == "No"){
                 myLibrary[idWord.textContent].read = "No";
             }else{
                 myLibrary[idWord.textContent].read = "Yes";
             }
-            console.log(myLibrary[idWord.textContent]);
-        }
-
-
-        
+        }     
+}else if(target.id == "deleteButton"){
+    let deleteInput = document.querySelector("#deleteInput");
+     //makes sure not invalid id entered
+     deleteInput = +(deleteInput.value);
+    if( deleteInput < myLibrary.length){
+        myLibrary[deleteInput].divCard.remove();
+        removeFromLibrary(deleteInput);
+    }
 }
 });
