@@ -1,18 +1,44 @@
+:root{
+    --base-clr: #fff7ed;
+    --head-clr: #fed7aa;
+    --sidebar-clr: #f59e0b;
+    --line-clr: #42434a;
+    --hover-clr: #f87171;
+    --active-clr: #b91c1c;
+    --secondary-hover-clr: #e11d48;
+
+    --text-clr: #e6e6ef;
+    --accent-clr: #5e63ff;
+    --secondary-text-clr: #b0b3c1;
+    --button-clr: #fca5a5;
+    --secondary-button-clr: #f43f5e;
+    --secondary-active-clr: #c7183e ;
+}
+
+
 body{
-    margin: 0;
-    padding: 0;
-    background-color: #fff7ed;
+    background-color: var(--base-clr);
 }
 
 *{
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5rem;
 }
 
 #page{
     display: grid;
-    grid-template-columns: 1.5fr 2fr 1fr;
+    grid-template-columns: auto 1fr;
     grid-template-rows: min-content 1fr;
-    height: 100vh;
+    /* to support mobile devices*/
+    min-height: 100vh;
+    min-height: 100dvh;
+
 }
 
 #page > *{
@@ -25,8 +51,8 @@ header{
     display: grid;
     align-items: baseline;
     grid-template-columns: 1fr auto;
-    background-color: #fed7aa;
-    box-shadow: 1px 1px 3px black;
+    background-color: var(--head-clr);
+    border-bottom: 1px solid var(--line-clr);
 
 }
 header #headTitle{
@@ -61,71 +87,155 @@ select{
 } */
 
 button{
-
-    background-color: #fca5a5;
+    background-color: var(--button-clr);
     color: #f4f4f5;
-
+    display: inline;
+    cursor:pointer;
 }
 button:hover{
     outline: 1px solid black;
-    background-color: #f87171;
+    background-color: var(--hover-clr);
 }
 button:active{
-    background-color: #b91c1c;
+    background-color: var(--active-clr) ;
 }
 /* sidebar */
 
-.sideBar{
+#sideBar{
     
     grid-area: 1 / 1 / 3 / 2 ;
-    padding: 2rem;
-    background: #f59e0b;
+    background-color: var(--sidebar-clr);
+    width: 250px;
+    height: 100vh;
+    padding: 5px 1em;
+    border-right: 1px solid var(--line-clr);
+    position: sticky;
+    top: 0;
+    align-self: start;
+
+    transition: 300ms ease-in-out;
+    text-wrap: nowrap;
+    overflow: hidden;
+
+
+    color: var(--text-clr);
+
+    svg{
+        fill: var(--secondary-text-clr);
+        flex-shrink: 0;
+    }
+
+    input{
+        margin-bottom: 5px;
+    }
+
+    label{
+        text-align: center;
+        white-space: nowrap;
+        margin-bottom: -5px;
+    }
+
+    ul{
+        list-style: none;
+    }
+
+
+}
+
+
+
+#sideBar > div > div{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+
+    .logo{
+        font-weight: 600;
+    }
+}
+
+#sideBar .dropDown-btn, #sideBar .logo{
+    border-radius: .5em;
+    padding: .85em;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+.dropDown-btn{
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+}
+.dropDown-btn:hover, #toggle-btn:hover{
+    outline: none;
+}
+
+.dropDown-btn span{
+
+        /* use if needed */
+        /* padding-left: 0.1ch; */
+        flex-grow: 1; 
     
 }
 
-.sideBar label{
-    color: #f4f4f5;
+.dropDown-btn svg{
+    transition: 200ms ease;
 }
 
-.sideBar input{
-    margin-bottom: 5px;
-}
-.sideBar label{
-    text-align: center;
-    white-space: nowrap;
-    margin-bottom: -5px;
+.rotate svg:last-child{
+    rotate: -180deg;
 }
 
-/* sideForm */
 
-
-.sideForm{
+#sideBar .sub-menu{
     display: grid;
-    grid-template-rows: min-content min-content;
-    align-content: space-evenly;
-    min-width: 250px;
-    height: 90vh;
-    gap: 10px;
+    grid-template-rows: 0fr;
+    transition: 300ms ease-in-out;
 
+    > div{
+        overflow: hidden;
+    }
+}
+
+/* when the submenu have the show class it will transition to open */
+#sideBar .sub-menu.show{
+    grid-template-rows: 1fr;
+    /* width: 300px; */
 
 }
-.sideForm #addBook{
-    display:grid;
-    gap: 10px;
 
-    grid-template-columns: repeat(auto-fit, minmax(calc(max(30%, 200px)), 1fr));
+#sideBar.close{
+    padding: 5px;
+    width: 60px;
+}
+
+#toggle-btn{
+    margin-left: auto;
+    width: auto;
+    border: none;
+    background: none;
+    padding: 1em;
+}
+
+
+
+/* the add button */
+#addBook{
+    display:flex;
+    flex-direction: column;
 }
 
 #addButton{
     width: 50%;
     margin: 0;
-    background-color: #f43f5e;
+    background-color: var(--secondary-button-clr);
 }
 #addButton:hover{
-    background-color: #e11d48;
+    background-color: var(--secondary-hover-clr);
 }
 #addButton:active{
-    background-color: #be123c;
+    background-color: var(--secondary-active-clr);
 }
 
 
@@ -147,7 +257,7 @@ button:active{
 .card{
     display: flex;
     flex-direction: column;
-    border: 3px solid #99f6e4;
+    border: 3px solid var(--line-clr);
     border-radius: 5px;
     width: 200px;
     padding: 1em;

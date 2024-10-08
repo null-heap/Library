@@ -3,10 +3,14 @@ const myLibrary = [];
 const bookCards = document.querySelector("#bookCards");
 const page = document.querySelector("#page");
 
+//the sidebar popup functionality
+const toggleButton = document.getElementById('toggle-btn');
+const sideBar = document.getElementById('sideBar');
+let dropDownBtns = sideBar.querySelectorAll(".dropDown-btn");
+
 
 // i have two options to help me keep track of the books id, use count or rely on myLibrary.length.
 function Book(title, author, pages, read, id){
-    // Book.count ++;
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -14,7 +18,6 @@ function Book(title, author, pages, read, id){
     this.id = id;
     this.divCard;
 }
-// Book.count = 0;
 
 Book.prototype.info = function(){
     return this.title + " by " + this.author + ", " + this.pages + " pages, " + this.read + " read";
@@ -88,19 +91,19 @@ function removeFromLibrary(id){
         //updates the dom element id;
         myLibrary[i].divCard.querySelector(".id").querySelector(".value").textContent = i;
     }
-    // Book.count --;
     return removed;
 }
 
 
-// the buttons funcitonality
+// the buttons functionality
 page.addEventListener("click", (e) =>{  
-    let target = e.target;
 
+    let target = e.target;
+    //console.log(target)
     //to be able to still use form for accessability features
-    if(target.tagName == "BUTTON"){
+    //if(target.tagName == "BUTTON" || target.parentNode.tagName == "BUTTON"){
         e.preventDefault();
-    }
+    //}
 
     //for add Button
     if(target.id == "addButton"){
@@ -139,6 +142,45 @@ page.addEventListener("click", (e) =>{
     if( deleteInput < myLibrary.length){
         myLibrary[deleteInput].divCard.remove();
         removeFromLibrary(deleteInput);
+        
     }
 }
 });
+
+
+
+
+//i could have used onclick of the html element itself to call a function for easier implementation
+//but i don't know if its a good standard so i used event listener, making it work on event delegation
+//was too much a headache because of the child elements inside the buttons so it made it less readable.
+
+dropDownBtns.forEach(btn =>{
+    btn.addEventListener('click', () =>{
+        console.log("click");
+                //if the submenu is closed it means its going to open so to close the other one for ecstatic
+                //if(!btn.nextElementSibling.classList.contains('show')){
+                  //  closeAllSubMenus();
+                //}
+                btn.nextElementSibling.classList.toggle('show');
+                btn.classList.toggle('rotate');
+            
+                if(sideBar.classList.contains('close')){
+                    sideBar.classList.toggle('close');
+                    toggleButton.classList.toggle('close');
+                }
+    })
+})
+
+toggleButton.addEventListener('click', () =>{
+    sideBar.classList.toggle('close');
+    toggleButton.classList.toggle('rotate');
+    closeAllSubMenus();
+});
+
+//the sidebar popup functionality
+function closeAllSubMenus(){
+    Array.from(sideBar.getElementsByClassName('show')).forEach(ul => {
+        ul.classList.remove('show');
+        ul.previousElementSibling.classList.remove('rotate');
+    })
+}
