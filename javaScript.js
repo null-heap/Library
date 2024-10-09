@@ -3,6 +3,7 @@ const myLibrary = [];
 const bookCards = document.querySelector("#bookCards");
 const page = document.querySelector("#page");
 
+const booksRegistered = document.getElementById('registered');
 //the sidebar popup functionality
 const toggleButton = document.getElementById('toggle-btn');
 const sideBar = document.getElementById('sideBar');
@@ -33,6 +34,8 @@ Book.prototype.display = function(){
         divCard.appendChild(addToCard("author","Author: ", this.author));
         //pages element
         divCard.appendChild(addToCard("pages","Pages: ", this.pages));
+
+
         //read button
         let div = document.createElement("div");
         div.className = "read";
@@ -58,8 +61,12 @@ Book.prototype.display = function(){
         //adding the div to the library
         bookCards.appendChild(divCard);
 
+        //update the registered books value
+
+
 };
 
+//separated it from the display function for easier readability
 function addToCard(name, word, value){
     let div = document.createElement("div");
     div.className = name;
@@ -81,17 +88,26 @@ function addToCard(name, word, value){
 function addBookToLibrary(title, author, pages, read){
     myLibrary.push(new Book(title, author, pages, read, myLibrary.length));
     myLibrary[myLibrary.length - 1].display();
+
+    //updates the header book count span
+    updateRegistered();
 }
 
 function removeFromLibrary(id){
     let removed = myLibrary.splice(id, 1);
     
+    //updates the id for every stored book
     for(let i = 0; i < myLibrary.length; i++){
         myLibrary[i].id = i;
         //updates the dom element id;
         myLibrary[i].divCard.querySelector(".id").querySelector(".value").textContent = i;
     }
-    return removed;
+
+    //updates the header book count span
+    updateRegistered();
+
+    //wanted to use to to display the last removed book at a sticky left side bar, for future development
+    //return removed;
 }
 
 
@@ -158,6 +174,7 @@ dropDownBtns.forEach(btn =>{
     btn.addEventListener('click', () =>{
         console.log("click");
                 //if the submenu is closed it means its going to open so to close the other one for ecstatic
+                //chose to disable it for now...
                 //if(!btn.nextElementSibling.classList.contains('show')){
                   //  closeAllSubMenus();
                 //}
@@ -171,16 +188,24 @@ dropDownBtns.forEach(btn =>{
     })
 })
 
+// close and open function for the sidebar
 toggleButton.addEventListener('click', () =>{
     sideBar.classList.toggle('close');
     toggleButton.classList.toggle('rotate');
+
+    // when the sidebar closes makes sure all the sub menu are close
     closeAllSubMenus();
 });
 
-//the sidebar popup functionality
+//when the sidebar closes makes sure all the sub menu are close
 function closeAllSubMenus(){
     Array.from(sideBar.getElementsByClassName('show')).forEach(ul => {
         ul.classList.remove('show');
         ul.previousElementSibling.classList.remove('rotate');
     })
+}
+
+//for the books registered span in the header
+function updateRegistered(){
+    booksRegistered.textContent = "books registered: " + myLibrary.length;
 }

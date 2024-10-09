@@ -16,6 +16,7 @@
 }
 
 
+ 
 body{
     background-color: var(--base-clr);
 }
@@ -93,7 +94,6 @@ button{
     cursor:pointer;
 }
 button:hover{
-    outline: 1px solid black;
     background-color: var(--hover-clr);
 }
 button:active{
@@ -140,10 +140,18 @@ button:active{
     }
 
 
+    /* a bit of esthetic styling */
+    .dropDown-div{
+        padding-top: 1em;
+        padding-bottom: 2em;
+        
+        border-bottom: 1px solid var(--line-clr);
+
+        
+    }
 }
 
-
-
+/* for the sidebar head */
 #sideBar > div > div{
     display: flex;
     justify-content: flex-end;
@@ -167,32 +175,41 @@ button:active{
     background: none;
     border: none;
 }
-.dropDown-btn:hover, #toggle-btn:hover{
-    outline: none;
+button:focus{
+    outline: 3px solid black;
 }
+
+
 
 .dropDown-btn span{
+    /* makes the span push the toggle svg to the end */
+    flex-grow: 1; 
 
-        /* use if needed */
-        /* padding-left: 0.1ch; */
-        flex-grow: 1; 
+    /* little fix for text slippage into the closed sidebar*/
+    padding-left: 0.1ch;
     
 }
+
 
 .dropDown-btn svg{
     transition: 200ms ease;
 }
 
 .rotate svg:last-child{
+    /* to animate the toggle svg in the drop down buttons */
     rotate: -180deg;
 }
 
 
 #sideBar .sub-menu{
+
+    /* i make use of grid to adjust the hight of the submenu and still allow to transition
+    if i used normal hight the transition wouldn't work */
     display: grid;
     grid-template-rows: 0fr;
     transition: 300ms ease-in-out;
 
+    /* makes the form hidden there is no hight */
     > div{
         overflow: hidden;
     }
@@ -205,11 +222,18 @@ button:active{
 
 }
 
+/* toggled by javaScript */
 #sideBar.close{
     padding: 5px;
     width: 60px;
-}
 
+    /* a bit of esthetic styling */
+    .dropDown-div{
+        border: none;
+    }
+
+}
+/* some styling */
 #toggle-btn{
     margin-left: auto;
     width: auto;
@@ -220,15 +244,8 @@ button:active{
 
 
 
-/* the add button */
-#addBook{
-    display:flex;
-    flex-direction: column;
-}
-
 #addButton{
-    width: 50%;
-    margin: 0;
+    margin-top: 10px;
     background-color: var(--secondary-button-clr);
 }
 #addButton:hover{
@@ -248,10 +265,10 @@ button:active{
 #bookCards{
     display: grid;
     grid-area: 2 / 2 / 3 / 3;
-    grid-template-columns: repeat(auto-fit,180px);
+    grid-template-columns: repeat(auto-fit,200px);
     gap: 2em;
     align-content: start;
-    justify-content: space-evenly;
+    /* justify-content: start; */
 }
 
 .card{
@@ -259,10 +276,11 @@ button:active{
     flex-direction: column;
     border: 3px solid var(--line-clr);
     border-radius: 5px;
+
     width: 200px;
     padding: 1em;
     justify-content: space-around;
-    height: 180px;
+    height: 200px;
 }
 
 /* card button styling */
@@ -274,4 +292,14 @@ button:active{
 .cardStrong{
     font-size: 1.2em;
     font-weight: 530;
+}
+
+:focus-visible, :focus{
+    box-shadow: none;
+    outline: 3px solid rgba(88,189,133,.65);
+    /* outline-offset: 2px; */
+}
+
+*:focus:not(:focus-visible){
+    outline: none;
 }
